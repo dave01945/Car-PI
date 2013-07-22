@@ -9,7 +9,15 @@ class home(wx.Frame):
 
 		wx.Frame.__init__(self, parent, id, 'Home Screen', size=(800, 480))
 		panel=wx.Panel(self)
-		button1=wx.Button(panel, label='Exit', pos=(20, 10), size=(60, 60))
+		# Buttons
+		button1=wx.Button(panel, label='Exit', pos=(30, 10), size=(350, 130))
+		button2=wx.Button(panel, label='button2', pos=(420, 10), size=(350, 130))
+		button3=wx.Button(panel, label='Button3', pos=(30, 175), size=(350, 130))
+		button4=wx.Button(panel, label='Button4', pos=(420, 175), size=(350, 130))
+		button5=wx.Button(panel, label='Button5', pos=(30, 340), size=(350, 130))
+		button6=wx.Button(panel, label='Button6', pos=(420, 340), size=(350, 130))
+
+		# functions to bind to buttons
 		self.Bind(wx.EVT_BUTTON, self.closebutton, button1) # event for pushing button
 		self.Bind(wx.EVT_CLOSE, self.closewindow) # event for pushing x on window
 
