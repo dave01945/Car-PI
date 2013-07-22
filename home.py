@@ -6,7 +6,8 @@ import wx
 class home(wx.Frame):
 
 	def __init__(self, parent, id):
-
+		# Set a frame(window) the same size as the display
+		# Can also be called in fullscreen mode
 		wx.Frame.__init__(self, parent, id, 'Home Screen', size=(800, 480))
 		panel=wx.Panel(self)
 		# Buttons
