@@ -7,12 +7,14 @@ import wx
 
 # craete home menu
 
+""""""
+
 class home(wx.Panel):
 
 	def __init__(self, parent):
 
 		# Create panel
-		wx.Panel.__init__(self, parent=parent)
+		wx.Panel.__init__(self, parent=parent, size=(800, 480))
 		# Buttons
 		button1=wx.Button(self, label='Exit', pos=(30, 10), size=(350, 130))
 		button2=wx.Button(self, label='MP3', pos=(420, 10), size=(350, 130))
@@ -33,19 +35,23 @@ class home(wx.Panel):
 		self.Destroy()
 
 	def openaudio(self, event):
-		self.homepanel.Hide()
-		self.audiopanel.Show()
+	#	self.audiopanel=audio(self)
+	#	self.homepanel=home(self)
+		homepanel.Hide()		
+		audiopanel.Show()
 
 ###############################################################################
 
 # Audio class used for displayeing audio files on internal or external storage
+
+""""""
 
 class audio(wx.Panel):
 
 	def __init__(self, parent):
 		
 # Create panel
-		wx.Panel.__init__(self, parent=parent)
+		wx.Panel.__init__(self, parent=parent, size=(800, 480))
 # Back to home button mainly to test
 		button=wx.Button(self, label='Home', pos=(720, 10), size=(60, 60))
 
@@ -53,23 +59,42 @@ class audio(wx.Panel):
 		self.Bind(wx.EVT_BUTTON, self.gohome, button)
 
 	def gohome(self, event): # Changes back to home screen
-		self.audiopanel.Hide()
-		self.homepanel.Show()
 
+	#	self.audiopanel=audio(self)
+	#	self.homepanel=home(self)
+		audiopanel.Hide()
+		homepanel.Show()
 
-##########################################################################
+###############################################################################
 
 # Frame subclass
 
 class mainframe(wx.Frame):
 
+# some declarations here 
+
+
 	def __init__(self):
 
 		wx.Frame.__init__(self, None, wx.ID_ANY, size=(800, 480))
+		
+		global homepanel
+		global audiopanel
+		homepanel=home(self)
+		audiopanel=audio(self)
+		audiopanel.Hide()
 
-		self.homepanel=home(self)
-#		self.audiopanel=audio(self)
-#		self.audiopanel.Hide()
+###############################################################################
+
+# A class for switching windows
+
+""""""
+
+#class toggle(self, event):
+
+#	def switch_mp3()
+
+
 
 ###############################################################################
 
