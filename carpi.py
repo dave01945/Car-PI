@@ -29,8 +29,8 @@ class home(wx.Panel):
 		self.Bind(wx.EVT_BUTTON, self.openaudio, button2) # Event for pushing mp3
 		
 	def closebutton(self, event):
-		frame=self.GetParent()
-		frame.Close()
+		prnt=self.GetParent()
+		prnt.Close()
 
 	def closewindow(self, event):
 		self.Destroy()
@@ -76,14 +76,20 @@ class mainframe(wx.Frame):
 
 
 	def __init__(self):
+		
+		displaysize=wx.DisplaySize()
 
-		wx.Frame.__init__(self, None, wx.ID_ANY, size=(800, 480))
+		wx.Frame.__init__(self, None, wx.ID_ANY, size=(displaysize[0]/2, displaysize[1]/2))
 		
 		global homepanel
 		global audiopanel
 		homepanel=home(self)
 		audiopanel=audio(self)
 		audiopanel.Hide()
+		
+		if debug:
+			print 'mainframe'
+			print displaysize
 
 ###############################################################################
 
@@ -98,6 +104,7 @@ class mainframe(wx.Frame):
 
 
 ###############################################################################
+debug=1
 
 if __name__=='__main__':
 	app=wx.PySimpleApp()
