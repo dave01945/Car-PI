@@ -29,7 +29,8 @@ class home(wx.Panel):
 		self.Bind(wx.EVT_BUTTON, self.openaudio, button2) # Event for pushing mp3
 		
 	def closebutton(self, event):
-		self.Close(True)
+		frame=self.GetParent()
+		frame.Close()
 
 	def closewindow(self, event):
 		self.Destroy()
