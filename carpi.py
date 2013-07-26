@@ -14,14 +14,14 @@ class home(wx.Panel):
 	def __init__(self, parent):
 
 		# Create panel
-		wx.Panel.__init__(self, parent=parent, size=(800, 480))
+		wx.Panel.__init__(self, parent=parent, size=(1280, 720))
 		# Buttons
-		button1=wx.Button(self, label='Exit', pos=(30, 10), size=(350, 130))
-		button2=wx.Button(self, label='MP3', pos=(420, 10), size=(350, 130))
-		button3=wx.Button(self, label='Button3', pos=(30, 175), size=(350, 130))
-		button4=wx.Button(self, label='Button4', pos=(420, 175), size=(350, 130))
-		button5=wx.Button(self, label='Button5', pos=(30, 340), size=(350, 130))
-		button6=wx.Button(self, label='Button6', pos=(420, 340), size=(350, 130))
+		button1=wx.Button(self, label='Exit', pos=(30, 10), size=(590, 210))
+		button2=wx.Button(self, label='MP3', pos=(660, 10), size=(590, 210))
+		button3=wx.Button(self, label='Button3', pos=(30, 255), size=(590, 210))
+		button4=wx.Button(self, label='Button4', pos=(660, 255), size=(590, 210))
+		button5=wx.Button(self, label='Button5', pos=(30, 500), size=(590, 210))
+		button6=wx.Button(self, label='Button6', pos=(660, 500), size=(590, 210))
 
 		# functions to bind to buttons
 		self.Bind(wx.EVT_BUTTON, self.closebutton, button1) # event for pushing button
@@ -52,7 +52,7 @@ class audio(wx.Panel):
 	def __init__(self, parent):
 		
 # Create panel
-		wx.Panel.__init__(self, parent=parent, size=(800, 480))
+		wx.Panel.__init__(self, parent=parent, size=(1280, 720))
 # Back to home button mainly to test
 		button=wx.Button(self, label='Home', pos=(720, 10), size=(60, 60))
 
@@ -77,9 +77,9 @@ class mainframe(wx.Frame):
 
 	def __init__(self):
 		
-		displaysize=wx.DisplaySize()
+		#displaysize=wx.DisplaySize()
 
-		wx.Frame.__init__(self, None, wx.ID_ANY, size=(displaysize[0]/2, displaysize[1]/2))
+		wx.Frame.__init__(self, None, wx.ID_ANY, size=(1280, 720))
 		
 		global homepanel
 		global audiopanel
@@ -89,7 +89,7 @@ class mainframe(wx.Frame):
 		
 		if debug:
 			print 'mainframe'
-			print displaysize
+		#	print displaysize
 
 ###############################################################################
 
@@ -110,4 +110,5 @@ if __name__=='__main__':
 	app=wx.PySimpleApp()
 	frame=mainframe()
 	frame.Show()
+	frame.ShowFullScreen(True)
 	app.MainLoop()
