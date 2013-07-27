@@ -2,12 +2,14 @@
 ''' Home screen for a car pc based on a raspberry pi '''
 
 import wx
+import wx.media
+import os
 
 ###############################################################################
 
 # craete home menu
 
-""""""
+"""creates the home screen with buttons for the varios functions."""
 
 class home(wx.Panel):
 
@@ -40,6 +42,7 @@ class home(wx.Panel):
 	#	self.homepanel=home(self)
 		homepanel.Hide()		
 		audiopanel1.Show()
+		audiopanel2.Show()
 
 ###############################################################################
 
@@ -49,12 +52,14 @@ class home(wx.Panel):
 
 class audio1(wx.Panel):
 
+	"""Used to change between the different audio playback windows"""
+
 	def __init__(self, parent):
 		
 # Create panel
 		wx.Panel.__init__(self, parent=parent, size=(320, 720))
 # Back to home button mainly to test
-		button1=wx.Button(self, label='button1', pos=(20, 20), size=(280, 155))
+		button1=wx.Button(self, label='Now Playing', pos=(20, 20), size=(280, 155))
 		button2=wx.Button(self, label='button2', pos=(20, 195), size=(280, 155))
 		button3=wx.Button(self, label='button3', pos=(20, 370), size=(280, 155))
 		button4=wx.Button(self, label='Home', pos=(20, 545), size=(280, 155))
@@ -64,7 +69,35 @@ class audio1(wx.Panel):
 
 	def gohome(self, event): # Changes back to home screen
 		audiopanel1.Hide()
+		audiopanel2.Hide()
 		homepanel.Show()
+
+###############################################################################
+
+
+
+class audio2(wx.Panel):
+
+	"""Now playing window that will control audio playback"""
+
+	def __init__(self, parent):
+
+		wx.Panel.__init__(self, parent=parent, pos=(320, 0), size=(960, 720))
+
+# Title for window
+		title=wx.StaticText(self, -1, "Now Playing", (450, 30))
+		font=wx.Font(22, wx.DECORATIVE, wx.NORMAL, wx.BOLD)
+		title.SetFont(font)
+
+# Playback slider
+		self.playbackslider=wx.Slider(self, pos=(50, 80), size=(930, -1))
+		self.Bind(wx.EVT_SLIDER, self.onseek, self.playbackslider)
+
+	def onseek(self, event):
+		"""Seeks the media file according to the amount the slider has
+		been adjusted."""
+		offset=self.playbackslider.GetValue()
+		self.mediaPlayer.Seek(offset)
 
 ###############################################################################
 
@@ -83,8 +116,11 @@ class mainframe(wx.Frame):
 		
 		global homepanel
 		global audiopanel1
+		global audiopanel2
 		homepanel=home(self)
 		audiopanel1=audio1(self)
+		audiopanel2=audio2(self)
+		audiopanel2.Hide()
 		audiopanel1.Hide()
 		
 		if debug:
