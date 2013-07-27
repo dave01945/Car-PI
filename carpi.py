@@ -39,7 +39,7 @@ class home(wx.Panel):
 	#	self.audiopanel=audio(self)
 	#	self.homepanel=home(self)
 		homepanel.Hide()		
-		audiopanel.Show()
+		audiopanel1.Show()
 
 ###############################################################################
 
@@ -47,23 +47,23 @@ class home(wx.Panel):
 
 """"""
 
-class audio(wx.Panel):
+class audio1(wx.Panel):
 
 	def __init__(self, parent):
 		
 # Create panel
-		wx.Panel.__init__(self, parent=parent, size=(1280, 720))
+		wx.Panel.__init__(self, parent=parent, size=(320, 720))
 # Back to home button mainly to test
-		button=wx.Button(self, label='Home', pos=(720, 10), size=(60, 60))
+		button1=wx.Button(self, label='button1', pos=(20, 20), size=(280, 155))
+		button2=wx.Button(self, label='button2', pos=(20, 195), size=(280, 155))
+		button3=wx.Button(self, label='button3', pos=(20, 370), size=(280, 155))
+		button4=wx.Button(self, label='Home', pos=(20, 545), size=(280, 155))
 
 # Bind event to the button
-		self.Bind(wx.EVT_BUTTON, self.gohome, button)
+		self.Bind(wx.EVT_BUTTON, self.gohome, button4)
 
 	def gohome(self, event): # Changes back to home screen
-
-	#	self.audiopanel=audio(self)
-	#	self.homepanel=home(self)
-		audiopanel.Hide()
+		audiopanel1.Hide()
 		homepanel.Show()
 
 ###############################################################################
@@ -82,25 +82,16 @@ class mainframe(wx.Frame):
 		wx.Frame.__init__(self, None, wx.ID_ANY, size=(1280, 720))
 		
 		global homepanel
-		global audiopanel
+		global audiopanel1
 		homepanel=home(self)
-		audiopanel=audio(self)
-		audiopanel.Hide()
+		audiopanel1=audio1(self)
+		audiopanel1.Hide()
 		
 		if debug:
 			print 'mainframe'
 		#	print displaysize
 
 ###############################################################################
-
-# A class for switching windows
-
-""""""
-
-#class toggle(self, event):
-
-#	def switch_mp3()
-
 
 
 ###############################################################################
