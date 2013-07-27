@@ -84,6 +84,12 @@ class audio2(wx.Panel):
 
 		wx.Panel.__init__(self, parent=parent, pos=(320, 0), size=(960, 720))
 
+		try:
+			self.mediaPlayer=wx.media.MediaCtrl(self, style=wx.SIMPLE_BORDER)
+		except NotImplementedError:
+			self.Destroy
+			raise
+
 # Title for window
 		title=wx.StaticText(self, -1, "Now Playing", (450, 30))
 		font=wx.Font(22, wx.DECORATIVE, wx.NORMAL, wx.BOLD)
@@ -92,6 +98,9 @@ class audio2(wx.Panel):
 # Playback slider
 		self.playbackslider=wx.Slider(self, pos=(50, 80), size=(930, -1))
 		self.Bind(wx.EVT_SLIDER, self.onseek, self.playbackslider)
+
+# Buttons
+		button1=wx.Button(self, label='Play/Pause', pos=(20, 150), size=(100, 70))
 
 	def onseek(self, event):
 		"""Seeks the media file according to the amount the slider has
